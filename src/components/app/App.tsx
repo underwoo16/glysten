@@ -3,6 +3,7 @@ import './App.css';
 import SpotifyWebApi from 'spotify-web-api-js';
 import { ArtistView } from '../artistView/ArtistView';
 import { Artist } from '../../types/Artist';
+import { getAccessToken } from '../../helpers/hashParams'
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -14,7 +15,7 @@ interface IState {
 export class App extends React.Component<{}, IState> {
   constructor(props: any) {
     super(props)
-    const token = this.getAccessToken();
+    const token = getAccessToken();
     console.log(token);
 
     if (token) {
@@ -25,23 +26,6 @@ export class App extends React.Component<{}, IState> {
       loggedIn: token ? true : false,
       topArtists: []
     };
-  }
-
-  getAccessToken():string {
-    let hashParams = new Map();
-
-    let regEx = /([^&;=]+)=?([^&;]*)/g
-    let hash = window.location.hash.substring(1);
-
-    let e = regEx.exec(hash);
-    while (e) {
-       let key = e[1]
-       let value = decodeURIComponent(e[2]);
-       hashParams.set(key, value)
-
-       e = regEx.exec(hash);
-    }
-    return hashParams.get("access_token");
   }
 
   getTopArtists(timeRange: string){

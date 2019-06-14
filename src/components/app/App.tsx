@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import SpotifyWebApi from 'spotify-web-api-js';
+import { ArtistView } from '../artistView/ArtistView';
+import { Artist } from '../../types/Artist';
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -9,22 +11,7 @@ interface IState {
       topArtists: Array<Artist>
 }
 
-interface IProps {}
-
-type Artist = {
-  external_urls : object,
-  followers : object,
-  genres : Array<string>,
-  href : string,
-  id : string
-  images : Array<object>,
-  name : string,
-  popularity : number,
-  type : string,
-  uri : string
-};
-
-export class App extends React.Component<IProps, IState> {
+export class App extends React.Component<{}, IState> {
   constructor(props: any) {
     super(props)
     const token = this.getAccessToken();
@@ -78,9 +65,7 @@ export class App extends React.Component<IProps, IState> {
           <a href='http://localhost:8888/login'> Login to Spotify </a>
         }
         <div>
-          {topArtists.map(artist =>
-              <div> {artist.name } </div>
-          )}
+          { topArtists.map(artist => <ArtistView {...artist} > </ArtistView> )}
         </div>
         { loggedIn &&
           <button onClick={() => this.getTopArtists("medium_term")}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import '../../css/skeleton.css'
 import SpotifyWebApi from 'spotify-web-api-js';
 import { ArtistView } from '../artistView/ArtistView';
 import { Artist } from '../../types/Artist';
@@ -29,7 +30,7 @@ export class App extends React.Component<{}, IState> {
   }
 
   getTopArtists(timeRange: string){
-    let options = { time_range: timeRange }
+    let options = { time_range: timeRange, limit: 24 }
     spotifyApi.getMyTopArtists(options)
       .then((response) => {
         console.log(response)
@@ -48,8 +49,10 @@ export class App extends React.Component<{}, IState> {
         { !loggedIn &&
           <a href='http://localhost:8888/login'> Login to Spotify </a>
         }
-        <div>
-          { topArtists.map(artist => <ArtistView {...artist} > </ArtistView> )}
+        <div className='container'>
+          <div className='row' >
+            { topArtists.map(artist => <ArtistView {...artist} > </ArtistView> )}
+          </div>
         </div>
         { loggedIn &&
           <button onClick={() => this.getTopArtists("medium_term")}>

@@ -1,9 +1,12 @@
-.square {
-  height: 150px;
-  width: 150px;
+.artist-square {
   background-color: #FFF;
   border-style: solid;
   border-width: thin;
   border-color: #555;
-  margin: auto;
+  margin-bottom: 1.5rem;
+  height: inherit;
+}
+
+.artist-row {
+    height: 10rem;
 }

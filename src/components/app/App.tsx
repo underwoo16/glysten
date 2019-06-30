@@ -10,7 +10,7 @@ const spotifyApi = new SpotifyWebApi()
 
 interface IState {
       loggedIn: boolean,
-      topArtists: Array<Artist>
+      topArtists: Artist[]
 }
 
 export class App extends React.Component<{}, IState> {
@@ -33,7 +33,6 @@ export class App extends React.Component<{}, IState> {
     let options = { time_range: timeRange, limit: 24 }
     spotifyApi.getMyTopArtists(options)
       .then((response) => {
-        console.log(response)
         this.setState({
           topArtists: response.items
         });
@@ -43,18 +42,19 @@ export class App extends React.Component<{}, IState> {
   render() {
     let loggedIn = this.state.loggedIn;
     let topArtists = this.state.topArtists;
+    let dataFetched = (topArtists.length !== 0);
 
     return (
       <div className='App'>
         { !loggedIn &&
           <a href='http://localhost:8888/login'> Login to Spotify </a>
         }
-        <div className='container'>
-          <div className='row' >
-            { topArtists.map(artist => <ArtistView {...artist} > </ArtistView> )}
+        { dataFetched &&
+          <div>
+            { <ArtistView artists={topArtists} > </ArtistView> }
           </div>
-        </div>
-        { loggedIn &&
+        }
+        { loggedIn && !dataFetched &&
           <button onClick={() => this.getTopArtists("medium_term")}>
             Show Top Artists
           </button>

@@ -10,3 +10,7 @@ export type Artist = {
   type : string,
   uri : string
 };
+
+export interface ArtistProps {
+  artists: Artist[]
+};

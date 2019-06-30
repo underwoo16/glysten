@@ -30,7 +30,7 @@ export class App extends React.Component<{}, IState> {
   }
 
   getTopArtists(timeRange: string){
-    let options = { time_range: timeRange, limit: 24 }
+    let options = { time_range: timeRange, limit: 12 }
     spotifyApi.getMyTopArtists(options)
       .then((response) => {
         this.setState({

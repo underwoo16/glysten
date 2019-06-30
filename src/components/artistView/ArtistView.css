@@ -1,12 +1,17 @@
 .artist-square {
-  background-color: #FFF;
+  background-color: transparent;
   border-style: solid;
   border-width: thin;
-  border-color: #555;
-  margin-bottom: 1.5rem;
+  border-color: #1db954;
   height: inherit;
+  text-align: center;
+}
+
+.content {
+  margin: 1.5rem;
 }
 
 .artist-row {
+    margin-bottom: 1.5rem;
     height: 10rem;
 }

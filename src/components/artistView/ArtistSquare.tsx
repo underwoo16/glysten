@@ -9,7 +9,7 @@ export class ArtistSquare extends React.Component<Artist> {
 
     return (
       <div className='artist-square one-third column'>
-        <div className='content'> {artist.name} </div>
+        <h3 className='content'> {artist.name} </h3>
       </div>
     );
   }

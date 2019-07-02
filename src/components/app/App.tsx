@@ -45,7 +45,7 @@ export class App extends React.Component<{}, IState> {
     let dataFetched = (topArtists.length !== 0);
 
     return (
-      <div className='App'>
+      <div id="app" className='App'>
         { !loggedIn &&
           <a href='http://localhost:8888/login'> Login to Spotify </a>
         }

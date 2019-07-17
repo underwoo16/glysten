@@ -1,6 +1,6 @@
 .artist-square {
-  background-color: #FFFFFF;
-  opacity: 0.25;
+  /* background-color: #FFFFFF; */
+  background: rgba(255, 255, 255, 0.05);
   height: inherit;
   text-align: center;
 }
@@ -11,10 +11,15 @@
   color: #ffffff;
   background-color: #1E3264;
   width: 53%;
-  opacity: 1.0;
+  padding: 12px 40px;
+  text-align: left;
+}
+
+.artist-image {
+    height: 175px;
+    width: 175px;
 }
 
 .artist-row {
-    margin-bottom: 1.5rem;
-    height: 10rem;
+    margin-bottom: 2rem;
 }

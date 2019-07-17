@@ -3,14 +3,13 @@ import './App.css';
 import '../../css/skeleton.css'
 import SpotifyWebApi from 'spotify-web-api-js';
 import { ArtistView } from '../artistView/ArtistView';
-import { Artist } from '../../types/Artist';
 import { getAccessToken } from '../../helpers/hashParams'
 
 const spotifyApi = new SpotifyWebApi()
 
 interface IState {
       loggedIn: boolean,
-      topArtists: Artist[]
+      topArtists: SpotifyApi.ArtistObjectFull[]
 }
 
 export class App extends React.Component<{}, IState> {

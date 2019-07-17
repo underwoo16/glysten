@@ -1,7 +1,7 @@
 import React from 'react';
 import './ArtistView.css';
 import '../../css/skeleton.css'
-import { ArtistProps } from '../../types/Artist';
+import { ArtistProps } from '../../types/ArtistProps';
 import { ArtistSquare } from './ArtistSquare';
 
 export class ArtistRow extends React.Component<ArtistProps> {

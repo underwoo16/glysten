@@ -1,8 +1,8 @@
 .artist-square {
-  /* background-color: #FFFFFF; */
   background: rgba(255, 255, 255, 0.05);
   height: inherit;
   text-align: center;
+  cursor: pointer;
 }
 
 .content {

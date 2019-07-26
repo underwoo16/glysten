@@ -43,6 +43,12 @@ export class App extends React.Component<{}, IState> {
     let topArtists = this.state.topArtists;
     let dataFetched = (topArtists.length !== 0);
 
+    // fetch initial data
+    // once login page and views are separate, do this fetch in componentDidMount
+    if (loggedIn && !dataFetched) {
+      this.getTopArtists("medium_term");
+    }
+
     return (
       <div id="app" className='App'>
         { !loggedIn &&

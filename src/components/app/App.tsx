@@ -9,7 +9,8 @@ const spotifyApi = new SpotifyWebApi()
 
 interface IState {
       loggedIn: boolean,
-      topArtists: SpotifyApi.ArtistObjectFull[]
+      topArtists: SpotifyApi.ArtistObjectFull[],
+      timeRange: string
 }
 
 export class App extends React.Component<{}, IState> {
@@ -24,8 +25,11 @@ export class App extends React.Component<{}, IState> {
 
     this.state = {
       loggedIn: token ? true : false,
-      topArtists: []
+      topArtists: [],
+      timeRange: "medium_term"
     };
+
+    this.getTopArtists = this.getTopArtists.bind(this);
   }
 
   getTopArtists(timeRange: string){
@@ -33,7 +37,8 @@ export class App extends React.Component<{}, IState> {
     spotifyApi.getMyTopArtists(options)
       .then((response) => {
         this.setState({
-          topArtists: response.items
+          topArtists: response.items,
+          timeRange: timeRange
         });
       })
   }
@@ -42,11 +47,12 @@ export class App extends React.Component<{}, IState> {
     let loggedIn = this.state.loggedIn;
     let topArtists = this.state.topArtists;
     let dataFetched = (topArtists.length !== 0);
+    let timeRange = this.state.timeRange;
 
     // fetch initial data
     // once login page and views are separate, do this fetch in componentDidMount
     if (loggedIn && !dataFetched) {
-      this.getTopArtists("medium_term");
+      this.getTopArtists(timeRange);
     }
 
     return (
@@ -56,11 +62,11 @@ export class App extends React.Component<{}, IState> {
         }
         { dataFetched &&
           <div>
-            { <ArtistView artists={topArtists} > </ArtistView> }
+            { <ArtistView artists={topArtists} time_range={timeRange} onTimeChange={this.getTopArtists}> </ArtistView> }
           </div>
         }
         { loggedIn && !dataFetched &&
-          <button onClick={() => this.getTopArtists("medium_term")}>
+          <button onClick={() => this.getTopArtists(timeRange)}>
             Show Top Artists
           </button>
         }

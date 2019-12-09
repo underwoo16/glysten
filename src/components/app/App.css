@@ -1,3 +1,13 @@
 .App {
   text-align: center;
 }
+
+.login-link {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+a.login-link:hover {
+  color: #2D46B9;
+}

@@ -58,7 +58,7 @@ export class App extends React.Component<{}, IState> {
     return (
       <div id="app" className='App'>
         { !loggedIn &&
-          <a href='http://localhost:8888/login'> Login to Spotify </a>
+          <a className='login-link' href='http://localhost:8888/login'> Login to Spotify </a>
         }
         { dataFetched &&
           <div>

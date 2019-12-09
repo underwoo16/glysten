@@ -15,8 +15,8 @@ export class ArtistSquare extends React.Component<SpotifyApi.ArtistObjectFull> {
     return (
       <div className='artist-square one-third column' onClick={() => this.openArtistLink()}>
         <h3 className='content'> {artist.name} </h3>
-        <figure className='artist-image u-max-full-width'>
-          <img src={artist.images[0].url} alt={artist.name}></img>
+        <figure className='u-max-full-width'>
+          <img className='artist-image' src={artist.images[0].url} alt={artist.name}></img>
         </figure>
       </div>
     );
